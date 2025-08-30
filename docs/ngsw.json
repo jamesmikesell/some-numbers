@@ -1,0 +1,91 @@
+{
+  "configVersion": 1,
+  "timestamp": 1756574681536,
+  "index": "/some-numbers/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/some-numbers/favicon.ico",
+        "/some-numbers/index.html",
+        "/some-numbers/main-5PX5DGQK.js",
+        "/some-numbers/manifest.webmanifest",
+        "/some-numbers/polyfills-5CFQRCPP.js",
+        "/some-numbers/styles-JEXOAMCQ.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/some-numbers/icons/apple-touch-icon.png",
+        "/some-numbers/icons/icon-16x16.png",
+        "/some-numbers/icons/icon-192x192.png",
+        "/some-numbers/icons/icon-32x32.png",
+        "/some-numbers/icons/icon-48x48.png",
+        "/some-numbers/icons/icon-512x512.png",
+        "/some-numbers/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "app-version",
+      "patterns": [
+        "\\/version\\.json"
+      ],
+      "strategy": "freshness",
+      "maxSize": 0,
+      "maxAge": 0,
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "version": 1
+    }
+  ],
+  "hashTable": {
+    "/some-numbers/favicon.ico": "9c39f434fe1261f68c5e3eefdf734630d99c5670",
+    "/some-numbers/icons/apple-touch-icon.png": "e13608d82457273b14d7929e0137cb03f359bd6e",
+    "/some-numbers/icons/icon-16x16.png": "310584f4364db8b608dde6b9c153af82b1b966d9",
+    "/some-numbers/icons/icon-192x192.png": "bf40ad804e0fee0a2c869084c547d5cc57e31161",
+    "/some-numbers/icons/icon-32x32.png": "6e9647c0c636a6034fb2f17cd1fc593a3d463c1b",
+    "/some-numbers/icons/icon-48x48.png": "4486660c4388fe6c143e4c6928209e6e8de71d9f",
+    "/some-numbers/icons/icon-512x512.png": "963bc8fdeb47c3809750e77ba2fe28582dd9dee3",
+    "/some-numbers/icons/icon-96x96.png": "b426e0176aab75ea0433a1bd79f9c2e7c040aae2",
+    "/some-numbers/index.html": "5f5fc6730b4ac750d225a389ea8403fd13e7fa2a",
+    "/some-numbers/main-5PX5DGQK.js": "836368e64f5a00a28bf9d034e903e66f8b206037",
+    "/some-numbers/manifest.webmanifest": "839ecc0817ee872c1c7ae8c9e9f96ade7bcaca8f",
+    "/some-numbers/polyfills-5CFQRCPP.js": "f2241e9a25858f895ce299d15f6f22e849e2fd72",
+    "/some-numbers/styles-JEXOAMCQ.css": "42a90714c2a51571d373d0974fe9231d8fe67786"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
