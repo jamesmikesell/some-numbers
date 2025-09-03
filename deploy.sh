@@ -2,8 +2,7 @@
 
 if [ -z "$(git status --porcelain)" ]; then
   old_branch=$(git branch --show-current)
-  git branch -f deploy
-  git checkout deploy
+  git checkout -d
 
   rm -rf ../docs
   rm -rf dist
@@ -15,7 +14,7 @@ if [ -z "$(git status --porcelain)" ]; then
 
   git add -A
   git commit -m "build(deploy): deploying "$(git rev-parse --short HEAD)
-  git push --force
+  git push old HEAD:deploy --force
   git checkout $old_branch
 else 
   echo "Error: commit all changes before attempting deploying"
