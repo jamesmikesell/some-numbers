@@ -18,7 +18,7 @@
     <button
       mat-menu-item
       (click)="boardUiService.requestUndo()"
-      [disabled]="!(canUndo)"
+      [disabled]="!canUndo"
     >
       <mat-icon>undo</mat-icon>
       Undo
@@ -34,6 +34,13 @@
     <mat-icon>settings</mat-icon>
     Settings
   </button>
+
+  @if (!isOfficialHost) {
+    <button mat-menu-item routerLink="/export">
+      <mat-icon>ios_share</mat-icon>
+      Export
+    </button>
+  }
 
   <button mat-menu-item (click)="toggleColorMode()">
     <mat-icon>{{ currentColorMode.icon }}</mat-icon>

@@ -1,11 +1,10 @@
-import { AsyncPipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, RouterOutlet } from '@angular/router';
+import { filter, first, Subject, takeUntil } from 'rxjs';
 import { CelebrationComponent } from "./component/celebration/celebration";
 import { MATERIAL_IMPORTS } from './material-imports';
 import { BoardUiService } from './service/board-ui.service';
 import { VersionCheckService } from './service/version-check.service';
-import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +23,7 @@ export class App implements OnInit, OnDestroy {
   get currentColorMode() { return this.colorModes[this.currentModeIndex] }
   boardVisible = false;
   canUndo = false;
+  public isOfficialHost = false;
 
   private destroy = new Subject<void>();
 
@@ -31,8 +31,10 @@ export class App implements OnInit, OnDestroy {
   constructor(
     public versionCheckService: VersionCheckService,
     public boardUiService: BoardUiService,
+    private router: Router,
   ) {
     versionCheckService.startVersionCheck();
+    this.isOfficialHost = this.computeIsOfficialHost();
     const savedMode = localStorage.getItem('colorMode');
     if (savedMode) {
       const savedModeIndex = this.colorModes.findIndex(m => m.mode === savedMode);
@@ -46,6 +48,22 @@ export class App implements OnInit, OnDestroy {
 
 
   ngOnInit(): void {
+    if (!this.isOfficialHost) {
+      this.router.events
+        .pipe(
+          filter(event => event instanceof NavigationEnd),
+          first()
+        )
+        .subscribe(() => {
+          const currentUrl = this.router.url;
+          console.log(currentUrl)
+          if (!currentUrl.startsWith('/export')) {
+            console.log("redirecting to export page")
+            this.router.navigateByUrl('/export');
+          }
+        });
+    }
+
     this.boardUiService.boardVisible$
       .pipe(takeUntil(this.destroy))
       .subscribe(visible => setTimeout(() => this.boardVisible = visible, 0))
@@ -87,6 +105,19 @@ export class App implements OnInit, OnDestroy {
 
     const themeColorMeta = this.getOrCreateThemeColorMeta();
     themeColorMeta.content = computedStyle.backgroundColor;
+  }
+
+
+  private computeIsOfficialHost(): boolean {
+    try {
+      const host = window?.location?.hostname || '';
+      return [
+        'somebers.com',
+        'www.somebers.com',
+      ].includes(host);
+    } catch {
+      return false;
+    }
   }
 }
 
