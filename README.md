@@ -1,3 +1,8 @@
-# Numbers Game
+# Somebers Has Moved
 
-Demo: <https://jamesmikesell.github.io/some-numbers/>
+Please see game / app at:
+<https://somebers.com>
+
+
+
+Or Github repository at <https://github.com/jamesmikesell/somebers>
